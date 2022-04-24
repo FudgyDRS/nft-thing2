@@ -4,6 +4,6 @@
   --secondary: #b41616;
   --secondary-text: #ffffff;
   --tertiary: #252525;
-  --accent: #505050;
+  --accent: rgba(50,50,50,0.75);
   --accent-text: #ffffff;
 }
