@@ -1,10 +1,10 @@
 {
   "CONTRACT_ADDRESS": "0xaA7bb5855C88A5b95665BAadB99F04DeEe8E8de3",
-  "SCAN_LINK": "https://cronos.org/explorer/testnet3/address/0xaA7bb5855C88A5b95665BAadB99F04DeEe8E8de3",
+  "SCAN_LINK": "https://cronoscan.com/address/0xaa7bb5855c88a5b95665baadb99f04deee8e8de3",
   "NETWORK": {
     "NAME": "CRONOS",
     "SYMBOL": "CRO",
-    "ID": 338
+    "ID": 25
   },
   "NFT_NAME": "Rekt Apes",
   "SYMBOL": "Rekt Apes",
