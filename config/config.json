@@ -2,8 +2,8 @@
   "CONTRACT_ADDRESS": "0xaA7bb5855C88A5b95665BAadB99F04DeEe8E8de3",
   "SCAN_LINK": "https://cronos.org/explorer/testnet3/address/0xaA7bb5855C88A5b95665BAadB99F04DeEe8E8de3",
   "NETWORK": {
-    "NAME": "tCRONOS",
-    "SYMBOL": "tCRO",
+    "NAME": "CRONOS",
+    "SYMBOL": "CRO",
     "ID": 338
   },
   "NFT_NAME": "Rekt Apes",
@@ -15,4 +15,4 @@
   "MARKETPLACE": "TWITTER",
   "MARKETPLACE_LINK": "https://twitter.com/RektApesNFT",
   "SHOW_BACKGROUND": true
-}
+} 
