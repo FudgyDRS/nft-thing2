@@ -32,7 +32,7 @@ const theme = extendTheme({
           minHeight: "95%",
           bg: "#00ff00"
         }
-      })
+      })//chakra-modal--body1
     }
   }
 });
@@ -41,7 +41,7 @@ export default function NftModal({ isOpen, onClose, nftObject }) {
   
   return (
     <ChakraProvider theme={theme}>
-    <Modal isOpen={isOpen} onClose={onClose} isCentered size="md">
+    <Modal isOpen={isOpen} onClose={onClose} isCentered size="sm">
       <ModalOverlay />
       <ModalContent background="gray.900" border="1px" borderStyle="solid" borderColor="gray.700" borderRadius="3xl" >
         <ModalHeader color="white" px={4} fontSize="lg" fontWeight="medium"> {nftObject.name} </ModalHeader>
@@ -58,7 +58,7 @@ export default function NftModal({ isOpen, onClose, nftObject }) {
             </Box>
             <Box  px={5} pt={4} pb={2} width={"400px"} >
               <Text color="white" fontSize="xl" fontWeight="semibold" ml="2" lineHeight="1.1">Metadata:</Text>
-              <MetadataBox index={nftObject["edition"]}/>
+              <MetadataBox index={nftObject["edition"]}/> 
             </Box>
           </ModalBody>
         </Header>

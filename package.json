@@ -28,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "yarn run build",
-    "deploy": "echo dapp.rektapes.co > ./build/CNAME && gh-pages -b main -d build",
+    "deploy": "echo rektapes.co > ./build/CNAME && gh-pages -b main -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

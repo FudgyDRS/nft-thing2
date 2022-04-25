@@ -9,11 +9,9 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   Text,
-  Grid
 } from "@chakra-ui/react";
 
 import metadata                         from './metadata.json';
@@ -24,7 +22,7 @@ export function AccountModal({ isOpen, onClose, tokensOfOwner, account }) {
 
   function MakeArray() {
       let newArray = [];
-      for(let index=0; index<=tokensOfOwner.length; index++) { newArray = [...newArray, metadata[index-1]]}
+      for(let index=1; index<=tokensOfOwner.length; index++) { newArray = [...newArray, metadata[index-1]]}
       return newArray;
   }
   
@@ -38,7 +36,7 @@ export function AccountModal({ isOpen, onClose, tokensOfOwner, account }) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered size="md">
       <ModalOverlay /> 
-      <ModalContent background="gray.900" border="1px" borderStyle="solid" borderColor="gray.700" borderRadius="3xl" marginTop="220px">
+      <ModalContent background="gray.900" border="1px" borderStyle="solid" borderColor="gray.700" borderRadius="3xl" marginTop="40px">
         <ModalHeader color="white" px={4} fontSize="lg" fontWeight="medium"> Account </ModalHeader>
         <ModalCloseButton color="white" fontSize="sm" _hover={{ color: "whiteAlpha.700" }} />
         <ModalBody pt={0} px={4}>
@@ -79,21 +77,11 @@ export function AccountModal({ isOpen, onClose, tokensOfOwner, account }) {
               </Link>
             </Flex>
           </Box>
+          <Box alignContent="center" p={4} pr={4} mt={4}>
+            <Box >Balance: {tokensOfOwner.length}</Box>
+            <PaginationComponent nftObjects = {data} />
+          </Box>
         </ModalBody>
-
-        <ModalFooter 
-          justifyContent="end"
-          background="gray.700"
-          borderBottomLeftRadius="3xl"
-          borderBottomRightRadius="3xl"
-          height="600px"
-          padding= "10px"
-        >
-          <Grid className="modal-footer">
-          <div className="modal-footer-balance">Balance: {tokensOfOwner.length}</div>
-          <PaginationComponent nftObjects = {data} />
-        </Grid>
-        </ModalFooter>
       </ModalContent>
     </Modal>
   );

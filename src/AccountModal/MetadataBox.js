@@ -6,9 +6,9 @@ import rates from './nftRates.json';
 const MetadataBox = ({ index }) => {
     const findIndex = (data, index) => {
       const dataList = data.find((dataList) => dataList.index === index);
-      return dataList && dataList.index;
+      return dataList && dataList.index; 
     }
-    const data = findIndex(metadata, index);
+    const data = findIndex(metadata, index-1);
 
     return(<Grid templateColumns='repeat(2, 1fr)' gap={4}>
             <GridItem display={"flex"} flexDirection={"row"}>
@@ -36,7 +36,7 @@ const MetadataBox = ({ index }) => {
               <Text color={"white"} marginStart={"1em"}>{(rates['Base'][metadata[data]['Base']] * 100 / 3333).toFixed(2)}%</Text>
             </GridItem>
             <GridItem display={"flex"} flexDirection={"row"}>
-              <Text color={"white"}>Injuries: </Text>
+              <Text color={"white"}>Hair-Hats: </Text>
               <Text color={"white"} marginStart={"1em"}>{metadata[data]['Hair-Hats']}</Text>
             </GridItem>
             <GridItem display={"flex"} flexDirection={"row"}>

@@ -71,7 +71,7 @@ export const ResponsiveWrapper = styled.div`
 export const StyledLogo = styled.img`
   width: 200px;
   @media (min-width: 767px) {
-    width: 300px;
+    width: 600px;
   }
   transition: width 0.5s;
   transition: height 0.5s;
@@ -79,7 +79,7 @@ export const StyledLogo = styled.img`
 
 export const StyledImg = styled.img`
   box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);
-  border: 4px dashed var(--secondary);
+  border: 4px var(--tertiary);
   background-color: var(--accent);
   border-radius: 100%;
   width: 200px;
@@ -128,36 +128,72 @@ function App() {
 
   const claimNFTs = () => {
     //let cost = CONFIG.WEI_COST;
-    let cost = _cost;
-    let gasLimit = CONFIG.GAS_LIMIT;
-    let totalCostWei = String(cost * mintAmount);
-    let totalGasLimit = String(gasLimit * mintAmount);
-    console.log("Cost: ", totalCostWei);
-    console.log("Gas limit: ", totalGasLimit);
-    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
-    setClaimingNft(true);
     blockchain.smartContract.methods
-      .mintMultipleNFT(mintAmount)
-      .send({
-        gasLimit: String(totalGasLimit),
-        to: CONFIG.CONTRACT_ADDRESS,
-        from: blockchain.account,
-        value: totalCostWei,
-      })
-      .once("error", (err) => {
-        console.log(err);
-        setFeedback("Sorry, something went wrong please try again later.");
-        setClaimingNft(false);
-      })
+      .calculatePriceMultiple(mintAmount)
+      .call()
       .then((receipt) => {
-        console.log(receipt);
-        setFeedback(
-          `These ${CONFIG.NFT_NAME} are all yours! Click the button below to view!`
-        );
-        setClaimingNft(false);
-        dispatch(fetchData(blockchain.account));
+        let cost = receipt;
+        let gasLimit = CONFIG.GAS_LIMIT;
+        let totalCostWei = receipt;
+        let totalGasLimit = String(gasLimit * mintAmount);
+        console.log("Cost: ", totalCostWei);
+        console.log("Gas limit: ", totalGasLimit);
+        setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+        setClaimingNft(true);
+        blockchain.smartContract.methods
+          .mintMultipleNFT(mintAmount)
+          .send({
+            gasLimit: String(totalGasLimit),
+            to: CONFIG.CONTRACT_ADDRESS,
+            from: blockchain.account,
+            value: totalCostWei,
+          })
+          .once("error", (err) => {
+            console.log(err);
+            setFeedback("Sorry, something went wrong please try again later.");
+            setClaimingNft(false);
+          })
+          .then((receipt) => {
+            console.log(receipt);
+            setFeedback(
+              `These ${CONFIG.NFT_NAME} are all yours! Click the button below to view!`
+            );
+            setClaimingNft(false);
+            dispatch(fetchData(blockchain.account));
+          });
+        getData();
       });
-    getData();
+
+    // let cost = _cost;
+    // let gasLimit = CONFIG.GAS_LIMIT;
+    // let totalCostWei = String(cost * mintAmount);
+    // let totalGasLimit = String(gasLimit * mintAmount);
+    // console.log("Cost: ", totalCostWei);
+    // console.log("Gas limit: ", totalGasLimit);
+    // setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+    // setClaimingNft(true);
+    // blockchain.smartContract.methods
+    //   .mintMultipleNFT(mintAmount)
+    //   .send({
+    //     gasLimit: String(totalGasLimit),
+    //     to: CONFIG.CONTRACT_ADDRESS,
+    //     from: blockchain.account,
+    //     value: totalCostWei,
+    //   })
+    //   .once("error", (err) => {
+    //     console.log(err);
+    //     setFeedback("Sorry, something went wrong please try again later.");
+    //     setClaimingNft(false);
+    //   })
+    //   .then((receipt) => {
+    //     console.log(receipt);
+    //     setFeedback(
+    //       `These ${CONFIG.NFT_NAME} are all yours! Click the button below to view!`
+    //     );
+    //     setClaimingNft(false);
+    //     dispatch(fetchData(blockchain.account));
+    //   });
+    // getData();
   };
 
   const calcPrice = () => {
@@ -175,7 +211,6 @@ function App() {
       .tokensOfOwner(blockchain.account)
       .call()
       .then((receipt) => {
-        //console.log(receipt);
         setTokensOfOwner(receipt);
         dispatch(fetchData(blockchain.account));
       });
@@ -187,14 +222,16 @@ function App() {
       newMintAmount = 1;
     }
     setMintAmount(newMintAmount);
+    calcPrice();
   };
 
   const incrementMintAmount = () => {
     let newMintAmount = mintAmount + 1;
-    // if (newMintAmount > 50) {
-    //   newMintAmount = 50;
-    // }
+    if (newMintAmount > 25) {
+      newMintAmount = 25;
+    }
     setMintAmount(newMintAmount);
+    calcPrice();
   };
 
   const getData = () => {
@@ -233,12 +270,12 @@ function App() {
         image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
       >
         <a href={CONFIG.MARKETPLACE_LINK}>
-          <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
+          <StyledLogo alt={"logo"} src={"/config/images/old_logo2.png"} />
         </a>
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
           <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"example"} src={"/config/images/example.gif"} />
+            <StyledImg alt={"example"} src={"/config/images/example2.gif"} />
           </s.Container>
           <s.SpacerLarge />
           <s.Container
@@ -249,7 +286,7 @@ function App() {
               backgroundColor: "var(--accent)",
               padding: 24,
               borderRadius: 24,
-              border: "4px dashed var(--secondary)",
+              border: "4px var(--tertiary)",
               boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
             }}
           >
@@ -270,7 +307,7 @@ function App() {
               }}
             >
               <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
-                {truncate(CONFIG.CONTRACT_ADDRESS, 15)}
+                {"View Contract on Cronoscan"}
               </StyledLink>
             </s.TextDescription>
             <span
@@ -315,26 +352,28 @@ function App() {
                 <s.SpacerSmall />
                 <StyledLink target={"_blank"} href={CONFIG.MARKETPLACE_LINK}>
                   {CONFIG.MARKETPLACE}
-                </StyledLink>
+                </StyledLink> 
               </>
-            ) : (
+            ) : ( 
               <>
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
+                  1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "} 
                   {CONFIG.NETWORK.SYMBOL}.
                 </s.TextTitle>
                 <s.SpacerXSmall />
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  Excluding gas fees.
+                  {/* Excluding gas fees. */}
+                  Rekt Apes is a true-to-reality collection
+                  showcasing what happens to cute lil' apes when they stare at the moon too long.
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
                 blockchain.smartContract === null ? (
-                  <s.Container ai={"center"} jc={"center"}>
+                  <s.Container ai={"center"} jc={"center"}> 
                     <s.TextDescription
                       style={{
                         textAlign: "center",
@@ -385,7 +424,6 @@ function App() {
                         onClick={(e) => {
                           e.preventDefault();
                           decrementMintAmount();
-                          calcPrice();
                           getData();
                         }}
                       >
@@ -406,7 +444,6 @@ function App() {
                         onClick={(e) => {
                           e.preventDefault();
                           incrementMintAmount();
-                          calcPrice();
                           getNfts();
                           getData();
                         }}
@@ -449,7 +486,7 @@ function App() {
           <s.Container flex={1} jc={"center"} ai={"center"}>
             <StyledImg
               alt={"example"}
-              src={"/config/images/example.gif"}
+              src={"/config/images/example3.gif"}
               style={{ transform: "scaleX(-1)" }}
             />
           </s.Container>
@@ -467,7 +504,7 @@ function App() {
             Once you make the purchase, you cannot undo this action.
           </s.TextDescription>
           <s.SpacerSmall />
-          <s.TextDescription
+          <s.TextDescription 
             style={{
               textAlign: "center",
               color: "var(--primary-text)",

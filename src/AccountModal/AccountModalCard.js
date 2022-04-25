@@ -19,6 +19,6 @@ export function GenerateCard({ nftObject }) {
       </Button>
       <NftModal isOpen={isOpen} onClose={onClose} nftObject={nftObject}/>
       </>
-  ) : (<Box>{`${console.log("GenerateCard failed: ", nftObject)}`}</Box>);
+  ) : (<>{`${console.log("GenerateCard failed: ", nftObject)}`}</>);
 }
 

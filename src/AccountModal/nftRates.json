@@ -31,7 +31,7 @@
         "Golden Ape #9" : 1,
         "Golden Ape #10": 1
     },
-    "Fur"       : {
+    "Fur" : {
         "grape"          : 111,
         "jungle green"   : 94,
         "brown"          : 91,
@@ -48,8 +48,8 @@
         "leopard"        : 21,
         "Golden Banana"  : 10
     },
-    "Base"      : { "rekt": 511, "default": 489 },
-    "Hair-Hats" : {
+    "Base"  : { "rekt": 511, "default": 489 },
+    "Hair-Hats"  : {
         "dumpster yellow cone": 49,
         "conehead black"      : 49,
         "grad1"               : 47,
@@ -77,7 +77,7 @@
         "crew cut"            : 29,
         "Hot Tamale"          : 1
     },
-    "Eyes"      : {
+    "Eyes"       : {
         "rekt1"       : 128,
         "bulging eyes": 126,
         "rekt2"       : 114,
@@ -88,7 +88,7 @@
         "rekt5"       : 102,
         "sewn shut"   : 101
     },
-    "Injuries"  : {
+    "Injuries"   : {
         "arrow2"     : 116,
         "arrow3"     : 114,
         "stabbing1"  : 113,
