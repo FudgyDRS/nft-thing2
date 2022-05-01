@@ -129,7 +129,7 @@ function App() {
   const claimNFTs = () => {
     //let cost = CONFIG.WEI_COST;
     blockchain.smartContract.methods
-      .calculatePrice(mintAmount)
+      .calculatePrice()
       .call()
       .then((receipt) => {
         let cost = receipt;
@@ -141,7 +141,7 @@ function App() {
         setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
         setClaimingNft(true);
         blockchain.smartContract.methods
-          .mintNFT(mintAmount)
+          .mintNFT()
           .send({
             gasLimit: String(totalGasLimit),
             to: CONFIG.CONTRACT_ADDRESS,
