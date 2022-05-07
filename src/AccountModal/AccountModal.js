@@ -22,7 +22,7 @@ export function AccountModal({ isOpen, onClose, tokensOfOwner, account }) {
 
   function MakeArray() {
       let newArray = [];
-      for(let index=1; index<=tokensOfOwner.length; index++) { newArray = [...newArray, metadata[index-1]]}
+      for(let index=0; index<=tokensOfOwner.length; index++) { newArray = [...newArray, metadata[tokensOfOwner[index]-1]]}
       return newArray;
   }
   

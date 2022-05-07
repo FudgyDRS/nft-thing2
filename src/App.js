@@ -416,9 +416,9 @@ function App() {
                     >
                       {feedback}
                     </s.TextDescription>
-                    <s.SpacerMedium />
+                    {/* <s.SpacerMedium /> */}
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
-                      <StyledRoundButton
+                      {/* <StyledRoundButton
                         style={{ lineHeight: 0.4 }}
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
@@ -428,18 +428,18 @@ function App() {
                         }}
                       >
                         -
-                      </StyledRoundButton>
-                      <s.SpacerMedium />
-                      <s.TextDescription
+                      </StyledRoundButton> */}
+                      {/* <s.SpacerMedium /> */}
+                      {/* <s.TextDescription
                         style={{
                           textAlign: "center",
                           color: "var(--accent-text)",
                         }}
                       >
                         {mintAmount}
-                      </s.TextDescription>
-                      <s.SpacerMedium />
-                      <StyledRoundButton
+                      </s.TextDescription> */}
+                      {/* <s.SpacerMedium /> */}
+                      {/* <StyledRoundButton
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
                           e.preventDefault();
@@ -449,7 +449,7 @@ function App() {
                         }}
                       >
                         +
-                      </StyledRoundButton>
+                      </StyledRoundButton> */}
                     </s.Container>
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
